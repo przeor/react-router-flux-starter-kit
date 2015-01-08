@@ -44,10 +44,6 @@ Dispatcher.prototype = merge(Dispatcher.prototype, {
    * @param  {object} payload The data from the action.
    */
   dispatch: function(payload) {
-
-    console.log('CONSOLE LOG dispatcher.js '+payload); /* FYI delete this line later, just for learning purpoes */
-    console.log(payload);
-    console.log('----------------')
     _callbacks.forEach(function(callback) {
       _addPromise(callback, payload);
     });

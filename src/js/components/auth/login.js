@@ -1,7 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
-var auth = require('../../stores/app-auth'); // TODO / USE DISPATCHER & ACTIONS
-
+var AuthStore = require('../../stores/app-auth.js');
 
 
 var Login = React.createClass({
@@ -21,7 +20,7 @@ var Login = React.createClass({
     event.preventDefault();
     var email = this.refs.email.getDOMNode().value;
     var pass = this.refs.pass.getDOMNode().value;
-    auth.login(email, pass, function (loggedIn) {
+    AuthStore.authLogin(email, pass, function (loggedIn) {
       if (!loggedIn)
         return this.setState({ error: true });
 

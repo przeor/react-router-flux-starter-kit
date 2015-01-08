@@ -1,19 +1,19 @@
 var React = require('react');
-var auth = require('../../stores/app-auth'); // TODO / USE DISPATCHER & ACTIONS
 var Login = require('../auth/login');
+var AuthStore = require('../../stores/app-auth.js');
 
 
 var Dashboard = React.createClass({
   statics: {
     willTransitionTo: function (transition) {
-      if (!auth.loggedIn()) {
+      if (!AuthStore.authLoggedIn()) {
         Login.attemptedTransition = transition;
         transition.redirect('/login');
       }
     }
   },
   render: function () {
-    var token = auth.getToken();
+    var token = AuthStore.authGetToken();
     return (
       <div>
         <h1>Dashboard</h1>

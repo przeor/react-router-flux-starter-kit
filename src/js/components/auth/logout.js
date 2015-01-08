@@ -1,9 +1,10 @@
 var React = require('react');
-var auth = require('../../stores/app-auth'); // TODO / USE DISPATCHER & ACTIONS
+var AuthStore = require('../../stores/app-auth.js');
+
 
 var Logout = React.createClass({
   componentDidMount: function () {
-    auth.logout();
+    AuthStore.authLogout();
   },
 
   render: function () {

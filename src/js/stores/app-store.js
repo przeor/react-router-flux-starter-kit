@@ -10,8 +10,8 @@ var _cartItems = [];
 
 function _addItem(item){
   console.log("ADD ITEM done - just an example");
-  alert("ADD ITEM done - just an example");
-  _cartItems.push(Math.floor(Math.random()));
+  alert("ADD ITEM done - just an example - check the console log for an output");
+  _cartItems.push(Math.random());
 }
 
 

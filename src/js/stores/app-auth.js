@@ -1,7 +1,12 @@
+var AppDispatcher = require('../dispatchers/app-dispatcher');
+var AppConstants = require('../constants/app-constants');
+var merge = require('react/lib/merge');
+var EventEmitter = require('events').EventEmitter;
+
 
 // Fake authentication lib
 
-var auth = {
+var _auth = {
   login: function (email, pass, cb) {
     cb = arguments[arguments.length - 1];
     if (localStorage.token) {
@@ -9,7 +14,7 @@ var auth = {
       this.onChange(true);
       return;
     }
-    pretendRequest(email, pass, function (res) {
+    _pretendRequest(email, pass, function (res) {
       if (res.authenticated) {
         localStorage.token = res.token;
         if (cb) cb(true);
@@ -39,7 +44,8 @@ var auth = {
 };
 
 
-function pretendRequest(email, pass, cb) {
+
+function _pretendRequest(email, pass, cb) {
   setTimeout(function () {
     if (email === 'joe@example.com' && pass === 'password1') {
       cb({
@@ -52,4 +58,52 @@ function pretendRequest(email, pass, cb) {
   }, 0);
 }
 
-module.exports = auth;
+
+// .login done
+// .getToken
+// .loggedIn 
+// .onChange
+
+
+
+
+var AuthStore = merge(EventEmitter.prototype, {
+  emitChange:function(){
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener:function(callback){
+    this.on(CHANGE_EVENT, callback)
+  },
+
+  removeChangeListener:function(callback){
+    this.removeListener(CHANGE_EVENT, callback)
+  },
+  authLogin:function(email, pass, cb){
+    return _auth.login(email, pass, cb);
+  },
+  authGetToken:function(){
+    return _auth.getToken();
+  },
+  authLoggedIn:function(){
+    return _auth.loggedIn();
+  },
+  authOnChange:function(cb){
+    _auth.onChange = cb;
+  },
+  authLogout:function(){
+    return _auth.logout();
+  },
+
+  dispatcherIndex:AppDispatcher.register(function(payload){
+    var action = payload.action; // this is our action from handleViewAction
+    switch(action.actionType){
+
+    }
+    AppStore.emitChange();
+
+    return true;
+  })
+})
+
+module.exports = AuthStore;
