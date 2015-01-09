@@ -29,7 +29,7 @@ var Login = React.createClass({
         Login.attemptedTransition = null;
         transition.retry();
       } else {
-        this.replaceWith('/about');
+        this.replaceWith('/dashboard');
       }
     }.bind(this));
   },

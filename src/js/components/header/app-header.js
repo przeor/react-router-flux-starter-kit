@@ -3,7 +3,7 @@ var Router = require('react-router');
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var auth = require('../../stores/app-auth'); // TODO / USE DISPATCHER & ACTIONS
-var Login = require('../auth/login');
+var Login = require('../auth/app-login');
 var AppActions = require('../../actions/app-actions.js');
 var AuthStore = require('../../stores/app-auth.js');
 var Link = Router.Link;
@@ -30,11 +30,13 @@ var Header = React.createClass({
       <Link to="login">Sign in</Link>;
     return (
       <div>
-        <ul>
+        <h1 className="breadcrumbs"><a href="http://www.github.com/przeor/react-router-flux-starter-kit">React Router Flux Starter Kit</a> / Auth Flow with Well Orginized Flux Architecture </h1>
+        <ul className="nav nav-tabs">
           <li>{loginOrOut}</li>
           <li><Link to="about">About</Link></li>
-          <li><Link to="dashboard">Dashboard</Link> (authenticated)</li>
+          <li><Link to="dashboard">Schedule Dashboard</Link></li>
         </ul>
+        <br/>
       </div>
     );
   }

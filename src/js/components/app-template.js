@@ -2,6 +2,7 @@
 var React = require('react');
 var AppStore = require('../stores/app-store.js');
 var AppActions = require('../actions/app-actions.js');
+var Header = require('./header/app-header');
 
 function getCart() {
   return AppStore.getCart();
@@ -16,10 +17,10 @@ var Template =
         render:function(){
             return (
             	<div className="container">
-                    <h1 class="breadcrumbs"><a href="index.html">React-Router Example</a> / Auth Flow with Flux Architecture (GitHub.com/PrzeoR)</h1>
-            		{this.props.children}
+                    <Header/>
+                    {this.props.children}
                     <br/><br/>
-                    <button className="btn btn-default" onClick={this.handleClick}>Add Item (example output in console) </button>
+                    <button className="btn btn-default" onClick={this.handleClick}>Add Item (an example output in the console .. it is using Actions->Dispatcher->Store one directional flow) </button>
             	</div>
             	)
         }

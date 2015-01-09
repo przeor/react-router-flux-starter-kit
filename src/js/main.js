@@ -7,11 +7,11 @@ var Link = Router.Link;
 APP = require('./components/app').APP;
 // Dashboard = require('./components/app').Dashboard;
 
-var Logout = require('./components/auth/logout');
-var Login = require('./components/auth/login');
+var Logout = require('./components/auth/app-logout');
+var Login = require('./components/auth/app-login');
 
-var About = require('./components/about/about');
-var Dashboard = require('./components/dashboard/dashboard');
+var About = require('./components/about/app-about');
+var Dashboard = require('./components/dashboard/app-dashboard');
 
 
 var routes = (
