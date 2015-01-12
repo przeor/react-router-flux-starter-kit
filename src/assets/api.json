@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "country": "Some API data 1"
+  },
+  {
+    "id": 2,
+    "country": "Some API data 2"
+  },
+  {
+    "id": 3,
+    "country": "Some API data 3"
+  },
+  {
+    "id": 4,
+    "country": "Some API data 4"
+  }
+  
+]

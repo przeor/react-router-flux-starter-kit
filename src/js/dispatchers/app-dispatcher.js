@@ -7,7 +7,15 @@ var AppDispatcher = merge(Dispatcher.prototype, {
       source: 'VIEW_ACTION',
       action: action
     })
-  }
+  },
+  handleRequestAction: function(action){
+    console.log("async data from api dispatched");
+    console.log(action);
+    this.dispatch({
+      source: 'WEB_API_ACTION',
+      action: action
+    })
+  },
 })
 
 module.exports = AppDispatcher;

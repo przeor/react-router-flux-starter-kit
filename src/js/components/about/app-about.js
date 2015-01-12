@@ -21,6 +21,7 @@ var About = React.createClass({
     			<li>FB flux architecture</li>
     			<li>basic react-router with auth flow</li>
     			<li>structure of the folders & files which helps organize project easily</li>
+                <li>helps you add web api requests into the flux architecture (check Entity component)</li>
     		</ul>
     		While I was learning about FB react flux architecture I used <a href="https://egghead.io/series/react-flux-architecture">Flux Architecture for Facebook''s React framework screencast (recommended by reactjs team)</a> so you can know that this project is using best known flux practises.
     		</p>

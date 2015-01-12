@@ -14,7 +14,8 @@
     "es6-promise": "^1.0.0",
     "react": "^0.12.2",
     "react-router": "0.11.6",
-    "reactify": "0.17.1"
+    "reactify": "0.17.1",
+    "superagent": "0.21.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
