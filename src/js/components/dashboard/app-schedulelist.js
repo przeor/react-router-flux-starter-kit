@@ -23,7 +23,9 @@ var ScheduleList = React.createClass({
         <thead>
           <tr><th>Status</th><th>Fullname</th><th>Email</th></tr>
         </thead>
+        <tbody>
         {scheduleListItems}
+        </tbody>
         </table>
       </div>
     );
