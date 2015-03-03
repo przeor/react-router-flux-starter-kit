@@ -1,11 +1,10 @@
-/** @jsx React.DOM */
 var AppConstants = require('../constants/app-constants');
 var AppDispatcher = require('../dispatchers/app-dispatcher');
 var request = require('superagent');
+
 // 
 // TODO - structure AppConstants for API as for example: http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/
 // 
-
 // console.log("********** utils/api.js init");
 
 

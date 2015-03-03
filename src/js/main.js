@@ -4,8 +4,11 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var Link = Router.Link;
 
+
+Parse.initialize("6Y1thpza6ZmfUKLG8HAV2gAMciWfORn3Eh0YRmIE", "EwL2wkstnoAn8oaipAl2bDTDmGLWlum7u1Tfp0po");
 APP = require('./components/app').APP;
 // Dashboard = require('./components/app').Dashboard;
+
 
 var Logout = require('./components/auth/app-logout');
 var Login = require('./components/auth/app-login');
