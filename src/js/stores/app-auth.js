@@ -3,9 +3,7 @@ var AppConstants = require('../constants/app-constants');
 var merge = require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
 
-
-// Fake authentication lib
-
+// authentication lib (without backend)
 var _auth = {
   login: function (email, pass, cb) {
     cb = arguments[arguments.length - 1];
@@ -25,7 +23,6 @@ var _auth = {
       }
     }.bind(this));
   },
-
   getToken: function () {
     return localStorage.token;
   },
@@ -57,17 +54,6 @@ function _pretendRequest(email, pass, cb) {
     }
   }, 0);
 }
-
-
-
-function _FbOauthRequest(response) {
-  fb_token = response.fb_token;
-  console.log(fb_token);
-  if (fb_token) {
-    localStorage.token = fb_token;
-  }
-  console.log("SUCCESS!!!!!!");
-} 
 
 
 
@@ -103,9 +89,10 @@ var AuthStore = merge(EventEmitter.prototype, {
     var action = payload.action; 
     console.log(action);
     switch(action.actionType){
-      case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
-        _FbOauthRequest(action.response);
-        break;
+      // below is just a boiler plate (uncomment if required)
+      // case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
+      //   _FbOauthRequest(action.response);
+      //   break;
     }
     AppStore.emitChange();
 

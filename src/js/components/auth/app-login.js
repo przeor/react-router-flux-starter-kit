@@ -22,6 +22,7 @@ var Login = React.createClass({
     event.preventDefault();
     var email = this.refs.email.getDOMNode().value;
     var pass = this.refs.pass.getDOMNode().value;
+    
     AuthStore.authLogin(email, pass, function (loggedIn) {
       if (!loggedIn)
         return this.setState({ error: true });

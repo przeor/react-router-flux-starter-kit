@@ -63,7 +63,7 @@ function _startFbOauth() {
 }
 
 var FbOauth = {
-    startOauth: function(testVariable) {
+    startOauth: function() {
         _startFbOauth();
     }
 };

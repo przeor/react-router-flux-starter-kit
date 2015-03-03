@@ -2,8 +2,8 @@
 var FbOauth = require('../utils/fboauth');
 
 var FbOauthActions = {
-    startOauth: function(testVariable) {
-        FbOauth.startOauth(testVariable);
+    startOauth: function() {
+        FbOauth.startOauth();
     },
 }
 

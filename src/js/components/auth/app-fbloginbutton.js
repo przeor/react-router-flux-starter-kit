@@ -7,6 +7,9 @@ var FbOauthStore = require('../../stores/app-fboauth');
 
 
 
+// TODO
+// 1. copy working code from app-login.js component
+// 2. try out if working
 var FbLoginButton = React.createClass({
   mixins: [ Router.Navigation ],
 
@@ -19,8 +22,22 @@ var FbLoginButton = React.createClass({
       error: false
     };
   },
+
+  componentDidMount: function() {
+      FbOauthStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+      FbOauthStore.removeChangeListener(this._onChange);
+  },
   handleFBLogin: function (event) {
-    FbOauthActions.startOauth("testVariable");
+    FbOauthActions.startOauth();
+  },
+  _onChange: function() { 
+    // when user is logged in, the Router redirects
+    // to dashboard
+    if(FbOauthStore.authLoggedIn()){
+      this.replaceWith('/dashboard'); // replaceWith comes from Router (included in mixins)
+    }
   },
   render: function () {
     return (
@@ -28,6 +45,39 @@ var FbLoginButton = React.createClass({
     );
   }
 });
+
+
+
+// keeping below for reference while changing this component
+//
+// var FbLoginButton = React.createClass({
+//   mixins: [ Router.Navigation ],
+
+//   statics: {
+//     attemptedTransition: null
+//   },
+
+//   getInitialState: function () {
+//     return {
+//       error: false
+//     };
+//   },
+//   componentDidMount: function() {
+//       FbOauthStore.addChangeListener(this._onChange);
+//   },
+//   // componentWillUnmount: function() {
+//   //     FbOauthStore.removeChangeListener(this._onChange);
+//   // },
+//   handleFBLogin: function (event) {
+//     FbOauthActions.startOauth();
+//   },
+//   _onChange: function() { console.log("Kamil test"); },
+//   render: function () {
+//     return (
+//           <button type="submit" onClick={this.handleFBLogin}>FB login</button>
+//     );
+//   }
+// });
 
 module.exports = FbLoginButton;
 
