@@ -6,7 +6,7 @@ var AuthStore = require('../stores/app-auth.js');
 // Regarding to some opinions
 // the best is to use Parse from CDN (not NPM module)
 // because there are some time consuming issues regarding
-// Browserify 
+// Browserify ...
 Parse.initialize("6Y1thpza6ZmfUKLG8HAV2gAMciWfORn3Eh0YRmIE", 
       "EwL2wkstnoAn8oaipAl2bDTDmGLWlum7u1Tfp0po");
 
@@ -65,7 +65,6 @@ function _startFbOauth() {
 var FbOauth = {
     startOauth: function(testVariable) {
         _startFbOauth();
-        // alert("22222233 "+testVariable);
     }
 };
 

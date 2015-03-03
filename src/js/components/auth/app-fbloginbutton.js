@@ -3,8 +3,7 @@ var React = require('react');
 var Router = require('react-router');
 var AuthStore = require('../../stores/app-auth.js');
 var FbOauthActions = require('../../actions/app-fboauth');
-
-var EntityStore = require('../../stores/app-entity');
+var FbOauthStore = require('../../stores/app-fboauth');
 
 
 
@@ -21,7 +20,7 @@ var FbLoginButton = React.createClass({
     };
   },
   handleFBLogin: function (event) {
-    FbOauthActions.startOauth("test");
+    FbOauthActions.startOauth("testVariable");
   },
   render: function () {
     return (

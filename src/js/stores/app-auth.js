@@ -59,11 +59,15 @@ function _pretendRequest(email, pass, cb) {
 }
 
 
-// .login done
-// .getToken
-// .loggedIn 
-// .onChange
 
+function _FbOauthRequest(response) {
+  fb_token = response.fb_token;
+  console.log(fb_token);
+  if (fb_token) {
+    localStorage.token = fb_token;
+  }
+  console.log("SUCCESS!!!!!!");
+} 
 
 
 
@@ -96,9 +100,12 @@ var AuthStore = merge(EventEmitter.prototype, {
   },
 
   dispatcherIndex:AppDispatcher.register(function(payload){
-    var action = payload.action; // this is our action from handleViewAction
+    var action = payload.action; 
+    console.log(action);
     switch(action.actionType){
-
+      case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
+        _FbOauthRequest(action.response);
+        break;
     }
     AppStore.emitChange();
 
@@ -107,3 +114,4 @@ var AuthStore = merge(EventEmitter.prototype, {
 })
 
 module.exports = AuthStore;
+
