@@ -1,6 +1,6 @@
 {
   "name": "flux",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
@@ -11,7 +11,6 @@
     "gulp-concat": "^2.2.0"
   },
   "devDependencies": {
-    "es6-promise": "^1.0.0",
     "react": "^0.12.2",
     "react-router": "0.11.6",
     "reactify": "0.17.1",

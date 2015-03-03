@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var Api = require('../utils/api');
 
 var EntityActions = {

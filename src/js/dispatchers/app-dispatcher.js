@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var Dispatcher = require('./dispatcher.js');
 var merge  = require('react/lib/merge');
 

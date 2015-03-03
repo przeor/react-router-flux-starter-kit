@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 var AppConstants = require('../constants/app-constants.js');
 var AppDispatcher = require('../dispatchers/app-dispatcher.js');
 
