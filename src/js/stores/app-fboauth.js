@@ -60,6 +60,15 @@ var _auth = {
     return !!localStorage.token;
   },
 
+  FbOauthRequest: function (response) {
+    fb_token = response.fb_token;
+    console.log(fb_token);
+    if (fb_token) {
+      localStorage.token = fb_token;
+      this.onChange(true); // triggering header to update state
+    }
+  },
+
   onChange: function () {}
 };
 
@@ -79,26 +88,9 @@ function _pretendRequest(email, pass, cb) {
 }
 
 
-function _fbTokenRequest(fb_token, cb) {
-  alert("LOGGED FB");
-  setTimeout(function () {
-      cb({
-        authenticated: true,
-        token: fb_token,
-      });
-  }, 0);
-}
 
 
 
-function _FbOauthRequest(response) {
-  fb_token = response.fb_token;
-  console.log(fb_token);
-  if (fb_token) {
-    localStorage.token = fb_token;
-  }
-  console.log("SUCCESS22222!!!!!!");
-} 
 
 
 
@@ -138,7 +130,7 @@ var FbOauthStore = merge(EventEmitter.prototype, {
     console.log(action);
     switch(action.actionType){
       case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
-        _FbOauthRequest(action.response);
+        _auth.FbOauthRequest(action.response);
         break;
     }
     FbOauthStore.emitChange();
