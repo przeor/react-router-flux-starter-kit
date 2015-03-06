@@ -1,12 +1,22 @@
-# react-router-flux-starter-kit
-a starter kit for reactjs flux project
+#Dependencies
+	node, npm
+	gulp (npm install -g gulp)
+	httpster (npm install -g httpster)
 
-Readme comming soon
+#Installation
+From "reactJS-flux-starter-kit" directory run
 
-Please use your own keys from parse.com + replace fb app id for yours
- - after runing gulp the whole app will be working
-out of the box (no backend coding required, but just parse.com account).
+	npm install
+	then run "gulp" - this will create new dist/ directory
 
-Locations:
-Parse keys: src/index.html
-Facebook keys: src/js/utils/fboauth.js
+#Running
+from reactJS-flux-starter-kit/dist/ (created by gulp) directory run
+    
+	httpster
+
+use gulp for building once or gulp watch for automatic updates
+	go to http://localhost:3333		
+
+#Locations:
+	Parse keys: src/index.html
+	Facebook keys: src/js/utils/fboauth.js
