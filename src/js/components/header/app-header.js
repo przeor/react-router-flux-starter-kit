@@ -25,7 +25,7 @@ var Header = React.createClass({
   componentWillMount: function () {
     AuthStore.authOnChange(this.setStateOnAuth);
     FbOauthStore.authOnChange(this.setStateOnAuth)
-    AuthStore.authLogin();
+    
   },
   render: function () {
     var loginOrOut = this.state.loggedIn ?

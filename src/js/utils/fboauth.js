@@ -1,6 +1,5 @@
 var AppConstants = require('../constants/app-constants');
 var AppDispatcher = require('../dispatchers/app-dispatcher');
-var AuthStore = require('../stores/app-auth.js');
 
 
 

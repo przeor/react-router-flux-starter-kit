@@ -3,22 +3,46 @@ var AppConstants = require('../constants/app-constants');
 var merge = require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
 
-// authentication lib (without backend)
+
+
+var CHANGE_EVENT = "change";
+
+
+var _authData = {
+      login_error: false,
+      auth_token: null
+    };
+    // your state container where 
+
+
+
+
 var _auth = {
   login: function (email, pass, cb) {
-    cb = arguments[arguments.length - 1];
+    console.log('loggin',email, pass);
+    cb = cb || function(backdata){};
+
     if (localStorage.token) {
-      if (cb) cb(true);
+      cb(true);
       this.onChange(true);
       return;
     }
+
     _pretendRequest(email, pass, function (res) {
       if (res.authenticated) {
         localStorage.token = res.token;
-        if (cb) cb(true);
+        _authData.auth_token=res.token;
+        cb(true);
         this.onChange(true);
+      } else if(res.login_error) {
+        _authData.login_error=true;
+        cb(false);
+        this.onChange(false);
+        swal({title: "Bad login information",   text: "", confirmButtonColor: "#ff0000",   timer: 800 });
       } else {
-        if (cb) cb(false);
+        _authData.error=true;
+        this.logout();
+        cb(false);
         this.onChange(false);
       }
     }.bind(this));
@@ -28,7 +52,10 @@ var _auth = {
   },
 
   logout: function (cb) {
-    delete localStorage.token;
+    _authData.auth_token=null;
+    localStorage.removeItem('token');
+    //localStorage.token=null;
+    // delete localStorage.token;
     if (cb) cb();
     this.onChange(false);
   },
@@ -46,12 +73,18 @@ function _pretendRequest(email, pass, cb) {
   setTimeout(function () {
     if (email === 'joe@example.com' && pass === 'password1') {
       cb({
+        login_error: false,
         authenticated: true,
         token: Math.random().toString(36).substring(7),
       });
     } else {
-      cb({authenticated: false});
+      cb({
+        login_error: true,
+        authenticated: false,
+        token:null
+      });
     }
+    AuthStore.emitChange();
   }, 0);
 }
 
@@ -69,9 +102,6 @@ var AuthStore = merge(EventEmitter.prototype, {
   removeChangeListener:function(callback){
     this.removeListener(CHANGE_EVENT, callback)
   },
-  authLogin:function(email, pass, cb){
-    return _auth.login(email, pass, cb);
-  },
   authGetToken:function(){
     return _auth.getToken();
   },
@@ -84,17 +114,23 @@ var AuthStore = merge(EventEmitter.prototype, {
   authLogout:function(){
     return _auth.logout();
   },
+  getState: function() {
+    return _authData;
+  },
 
   dispatcherIndex:AppDispatcher.register(function(payload){
     var action = payload.action; 
     console.log(action);
     switch(action.actionType){
+      case AppConstants.AUTH_LOG_IN:
+      _auth.login(action.email, action.pass);
+      break;
       // below is just a boiler plate (uncomment if required)
       // case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
       //   _FbOauthRequest(action.response);
       //   break;
     }
-    AppStore.emitChange();
+    AuthStore.emitChange();
 
     return true;
   })

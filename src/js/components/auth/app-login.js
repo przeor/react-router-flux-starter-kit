@@ -2,6 +2,7 @@
 var React = require('react');
 var Router = require('react-router');
 var AuthStore = require('../../stores/app-auth.js');
+var AuthAction = require('../../actions/app-auth.js');
 var FbLoginButton = require('./app-fbloginbutton.js');
 
 
@@ -13,31 +14,29 @@ var Login = React.createClass({
   },
 
   getInitialState: function () {
-    return {
-      error: false
-    };
+    return AuthStore.getState();
+    
   },
-
+  componentDidMount: function() {
+      AuthStore.addChangeListener(this._onChange);
+  },
+  componentDidUpdate: function() {
+    if(this.state.auth_token!==null) {
+      this.replaceWith('/dashboard');
+    }
+  },
+  componentWillUnmount: function() {
+      AuthStore.removeChangeListener(this._onChange);
+  },
   handleSubmit: function (event) {
     event.preventDefault();
     var email = this.refs.email.getDOMNode().value;
     var pass = this.refs.pass.getDOMNode().value;
-    
-    AuthStore.authLogin(email, pass, function (loggedIn) {
-      if (!loggedIn)
-        return this.setState({ error: true });
-
-      if (Login.attemptedTransition) {
-        var transition = Login.attemptedTransition;
-        Login.attemptedTransition = null;
-        transition.retry();
-      } else {
-        this.replaceWith('/dashboard');
-      }
-    }.bind(this));
+    AuthAction.startAuth(email, pass);
   },
+  _onChange: function() {this.setState(AuthStore.getState());},
   render: function () {
-    var errors = this.state.error ? <p>Bad login information</p> : '';
+    var errors = this.state.login_error === true ? <p>Bad login information</p> : '';
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
