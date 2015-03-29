@@ -1,5 +1,9 @@
 #Reviews
 ![alt tag](http://screenshu.com/static/uploads/temporary/nu/zz/oq/tn8s6s.jpg)
+
+#Online demo
+http://przeor.github.io/react-router-flux-starter-kit/#/
+
 #Dependencies
 	node, npm
 	gulp (npm install -g gulp)
