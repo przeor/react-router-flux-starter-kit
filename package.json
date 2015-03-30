@@ -8,7 +8,9 @@
     "es6-promise": "^1.0.0",
     "gulp": "^3.8.0",
     "gulp-browserify": "^0.5.0",
-    "gulp-concat": "^2.2.0"
+    "gulp-concat": "^2.2.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-open": "~0.3.2"
   },
   "devDependencies": {
     "react": "^0.12.2",
