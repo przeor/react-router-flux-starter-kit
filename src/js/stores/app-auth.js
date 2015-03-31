@@ -63,8 +63,24 @@ var _auth = {
   loggedIn: function () {
     return !!localStorage.token;
   },
-
-  onChange: function () {}
+  FbOauthRequest: function (response) {
+    fb_token = response.fb_token;
+    console.log(fb_token);
+    if (fb_token) {
+      localStorage.token = fb_token;
+      this.onChange(true); // triggering header to update state
+    }
+  },
+  onChange: function (loggedIn) {
+    this.onChangeRedirect(loggedIn);
+    this.onChangeHeader(loggedIn);
+  },
+  // this on change is fired up in order
+  // to change route to /dashboard after successful login
+  onChangeRedirect: function() {},
+  // this on change is fired up in order
+  // to change header state login/logout
+  onChangeHeader: function() {}
 };
 
 
@@ -109,7 +125,10 @@ var AuthStore = merge(EventEmitter.prototype, {
     return _auth.loggedIn();
   },
   authOnChange:function(cb){
-    _auth.onChange = cb;
+    _auth.onChangeRedirect = cb;
+  },
+  authOnChangeHeader:function(cb){
+    _auth.onChangeHeader = cb;
   },
   authLogout:function(){
     return _auth.logout();
@@ -125,6 +144,9 @@ var AuthStore = merge(EventEmitter.prototype, {
       case AppConstants.AUTH_LOG_IN:
       _auth.login(action.email, action.pass);
       break;
+      case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
+        _auth.FbOauthRequest(action.response);
+        break;
       // below is just a boiler plate (uncomment if required)
       // case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
       //   _FbOauthRequest(action.response);

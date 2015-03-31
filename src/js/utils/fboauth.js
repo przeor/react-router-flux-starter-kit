@@ -83,7 +83,6 @@ function _startFbOauth() {
         },
         error: function(user, error) {
             alert("User cancelled the Facebook login or did not fully authorize.");
-            location.reload();
         }
     });
 }

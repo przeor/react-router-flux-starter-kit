@@ -7,7 +7,6 @@ var auth = require('../../stores/app-auth'); // TODO / USE DISPATCHER & ACTIONS
 var Login = require('../auth/app-login');
 var AppActions = require('../../actions/app-actions.js');
 var AuthStore = require('../../stores/app-auth.js');
-var FbOauthStore = require('../../stores/app-fboauth');
 var Link = Router.Link;
 
 
@@ -23,8 +22,8 @@ var Header = React.createClass({
     });
   },
   componentWillMount: function () {
-    AuthStore.authOnChange(this.setStateOnAuth);
-    FbOauthStore.authOnChange(this.setStateOnAuth)
+    AuthStore.authOnChangeHeader(this.setStateOnAuth);
+    // FbOauthStore.authOnChange(this.setStateOnAuth)
     
   },
   render: function () {

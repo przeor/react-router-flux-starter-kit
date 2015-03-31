@@ -3,7 +3,7 @@ var React = require('react');
 var Router = require('react-router');
 var AuthStore = require('../../stores/app-auth.js');
 var FbOauthActions = require('../../actions/app-fboauth');
-var FbOauthStore = require('../../stores/app-fboauth');
+var AuthStore = require('../../stores/app-auth.js');
 
 
 var FbLoginButton = React.createClass({
@@ -20,10 +20,10 @@ var FbLoginButton = React.createClass({
   },
 
   componentDidMount: function() {
-      FbOauthStore.addChangeListener(this._onChange);
+      AuthStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-      FbOauthStore.removeChangeListener(this._onChange);
+      AuthStore.removeChangeListener(this._onChange);
   },
   handleFBLogin: function (event) {
     FbOauthActions.startOauth();
@@ -31,7 +31,7 @@ var FbLoginButton = React.createClass({
   _onChange: function() { 
     // when user is logged in, the Router redirects
     // to dashboard
-    if(FbOauthStore.authLoggedIn()){
+    if(AuthStore.authLoggedIn()){
       this.replaceWith('/dashboard'); // replaceWith comes from Router (included in mixins)
     }
   },
