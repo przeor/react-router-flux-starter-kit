@@ -20,10 +20,11 @@ var FbLoginButton = React.createClass({
   },
 
   componentDidMount: function() {
-      AuthStore.addChangeListener(this._onChange);
+    AuthStore.addChangeListener(this._onChange);
+    FbOauthActions.fbLoginPageLoaded();
   },
   componentWillUnmount: function() {
-      AuthStore.removeChangeListener(this._onChange);
+    AuthStore.removeChangeListener(this._onChange);
   },
   handleFBLogin: function (event) {
     FbOauthActions.startOauth();
@@ -37,7 +38,7 @@ var FbLoginButton = React.createClass({
   },
   render: function () {
     return (
-          <button type="submit" onClick={this.handleFBLogin}>FB login</button>
+      <button type="submit" onClick={this.handleFBLogin}>FB login</button>
     );
   }
 });
