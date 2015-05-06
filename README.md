@@ -15,6 +15,7 @@ From "reactJS-flux-starter-kit" directory run
 
 	npm install
 	then run "gulp" - this will create new dist/ directory
+	use *gulp watch* for live reload
 
 #Running
 from reactJS-flux-starter-kit/dist/ (created by gulp) directory run
