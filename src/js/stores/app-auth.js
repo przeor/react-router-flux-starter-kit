@@ -54,9 +54,6 @@ var _auth = {
   logout: function (cb) {
     _authData.auth_token=null;
     localStorage.removeItem('token');
-    //localStorage.token=null;
-    // delete localStorage.token;
-    if (cb) cb();
     this.onChange(false);
   },
 
