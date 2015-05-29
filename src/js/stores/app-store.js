@@ -1,7 +1,7 @@
 var AppDispatcher = require('../dispatchers/app-dispatcher');
 var AppConstants = require('../constants/app-constants');
-var merge = require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
+var React = require('react/addons');
 
 var CHANGE_EVENT = "change";
 
@@ -17,7 +17,7 @@ function _addItem(item){
 
 
 
-var AppStore = merge(EventEmitter.prototype, {
+var AppStore = React.addons.update(EventEmitter.prototype, { $merge: {
   emitChange:function(){
     this.emit(CHANGE_EVENT);
   },
@@ -44,6 +44,6 @@ var AppStore = merge(EventEmitter.prototype, {
 
     return true;
   })
-})
+}});
 
 module.exports = AppStore;

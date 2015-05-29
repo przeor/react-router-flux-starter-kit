@@ -1,13 +1,13 @@
 var AppDispatcher = require('../dispatchers/app-dispatcher');
 var AppConstants = require('../constants/app-constants');
-var merge = require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
+var React = require('react/addons');
 
 var CHANGE_EVENT = "change";
 
 
 var _entityList = [
-    // your state container where 
+    // your state container where
 ];
 
 
@@ -20,7 +20,7 @@ function _persistEntityData(response) {
 }
 
 
-var EntityStore = merge(EventEmitter.prototype, {
+var EntityStore = React.addons.update(EventEmitter.prototype, {$merge: {
   emitChange:function(){
     this.emit(CHANGE_EVENT);
   },
@@ -48,7 +48,7 @@ var EntityStore = merge(EventEmitter.prototype, {
 
     return true;
   })
-})
+}});
 
 
 

@@ -7,7 +7,9 @@ var FbLoginButton = require('./app-fbloginbutton.js');
 
 
 var Login = React.createClass({
-  mixins: [ Router.Navigation ],
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
 
   statics: {
     attemptedTransition: null
@@ -15,14 +17,14 @@ var Login = React.createClass({
 
   getInitialState: function () {
     return AuthStore.getState();
-    
+
   },
   componentDidMount: function() {
       AuthStore.addChangeListener(this._onChange);
   },
   componentDidUpdate: function() {
     if(this.state.auth_token!==null) {
-      this.replaceWith('/dashboard');
+      this.context.router.replaceWith('/dashboard');
     }
   },
   componentWillUnmount: function() {

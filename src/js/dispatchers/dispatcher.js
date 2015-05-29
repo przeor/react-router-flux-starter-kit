@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var Promise = require('es6-promise').Promise;
-var merge = require('react/lib/merge');
+var React = require('react/addons');
 
 var _callbacks = [];
 var _promises = [];
@@ -28,7 +28,7 @@ var _clearPromises = function() {
 };
 
 var Dispatcher = function() {};
-Dispatcher.prototype = merge(Dispatcher.prototype, {
+Dispatcher.prototype = React.addons.update(Dispatcher.prototype, { $merge: {
 
   /**
    * Register a Store's callback so that it may be invoked by an action.
@@ -51,6 +51,6 @@ Dispatcher.prototype = merge(Dispatcher.prototype, {
     Promise.all(_promises).then(_clearPromises);
   }
 
-});
+}});
 
 module.exports = Dispatcher;

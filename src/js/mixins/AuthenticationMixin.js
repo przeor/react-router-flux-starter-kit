@@ -5,7 +5,7 @@ var AuthStore = require('../stores/app-auth.js');
 var AuthenticationMixin = {
 	  statics: {
 	    willTransitionTo: function (transition) {
-	      if (!AuthStore.authLoggedIn()) {
+	      if (!AuthStore.getState().loggedIn) {
 	        Login.attemptedTransition = transition;
 	        transition.redirect('/login');
 	        alert('Please login first.');

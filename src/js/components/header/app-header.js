@@ -12,14 +12,10 @@ var Link = Router.Link;
 
 var Header = React.createClass({
   getInitialState: function () {
-    return {
-      loggedIn: AuthStore.authLoggedIn()
-    };
+    return AuthStore.getState();
   },
   setStateOnAuth: function (loggedIn) {
-    this.setState({
-      loggedIn: loggedIn
-    });
+    this.setState(AuthStore.getState());
   },
   componentWillMount: function () {
     AuthStore.authOnChangeHeader(this.setStateOnAuth);

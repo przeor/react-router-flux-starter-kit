@@ -4,8 +4,8 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-  "react": "^0.12.2",
-  "react-router": "0.11.6",
+  "react": "^0.13.3",
+  "react-router": "^0.13.3",
   "reactify": "0.17.1",
   "superagent": "0.21.0"
 

@@ -29,10 +29,10 @@ var FbLoginButton = React.createClass({
   handleFBLogin: function (event) {
     FbOauthActions.startOauth();
   },
-  _onChange: function() { 
+  _onChange: function() {
     // when user is logged in, the Router redirects
     // to dashboard
-    if(AuthStore.authLoggedIn()){
+    if(AuthStore.getState().loggedIn){
       this.replaceWith('/dashboard'); // replaceWith comes from Router (included in mixins)
     }
   },

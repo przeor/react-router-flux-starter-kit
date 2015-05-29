@@ -1,8 +1,7 @@
 var AppDispatcher = require('../dispatchers/app-dispatcher');
 var AppConstants = require('../constants/app-constants');
-var merge = require('react/lib/merge');
 var EventEmitter = require('events').EventEmitter;
-
+var React = require('react/addons');
 
 
 var CHANGE_EVENT = "change";
@@ -10,9 +9,10 @@ var CHANGE_EVENT = "change";
 
 var _authData = {
       login_error: false,
-      auth_token: null
+      auth_token: null,
+      loggedIn: !!localStorage.token
     };
-    // your state container where 
+    // your state container where
 
 
 
@@ -23,6 +23,7 @@ var _auth = {
     cb = cb || function(backdata){};
 
     if (localStorage.token) {
+      _authData.loggedIn = true;
       cb(true);
       this.onChange(true);
       return;
@@ -32,6 +33,7 @@ var _auth = {
       if (res.authenticated) {
         localStorage.token = res.token;
         _authData.auth_token=res.token;
+        _authData.loggedIn = true;
         cb(true);
         this.onChange(true);
       } else if(res.login_error) {
@@ -53,6 +55,7 @@ var _auth = {
 
   logout: function (cb) {
     _authData.auth_token=null;
+    _authData.loggedIn = false;
     localStorage.removeItem('token');
     this.onChange(false);
   },
@@ -103,7 +106,7 @@ function _pretendRequest(email, pass, cb) {
 
 
 
-var AuthStore = merge(EventEmitter.prototype, {
+var AuthStore = React.addons.update(EventEmitter.prototype, {$merge: {
   emitChange:function(){
     this.emit(CHANGE_EVENT);
   },
@@ -119,7 +122,7 @@ var AuthStore = merge(EventEmitter.prototype, {
     return _auth.getToken();
   },
   authLoggedIn:function(){
-    return _auth.loggedIn();
+    return _authData.loggedIn;
   },
   authOnChange:function(cb){
     _auth.onChangeRedirect = cb;
@@ -135,7 +138,7 @@ var AuthStore = merge(EventEmitter.prototype, {
   },
 
   dispatcherIndex:AppDispatcher.register(function(payload){
-    var action = payload.action; 
+    var action = payload.action;
     console.log(action);
     switch(action.actionType){
       case AppConstants.AUTH_LOG_IN:
@@ -153,7 +156,7 @@ var AuthStore = merge(EventEmitter.prototype, {
 
     return true;
   })
-})
+}});
 
 module.exports = AuthStore;
 

@@ -14,7 +14,7 @@ var About = React.createClass({
     		<p>This react router flux starter was created by <a href="https://github.com/przeor/">PrzeoR</a>.
     		I created this because I did not find any suitable reactjs project starter at the time.
     		<br/>
-    		This react router flux starter has been prepared with all known best practises 
+    		This react router flux starter has been prepared with all known best practises
     		about react flux architecture.
     		<br/>
     		It uses:
