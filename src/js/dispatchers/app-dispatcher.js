@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
-var React = require('react/addons');
-var Dispatcher = require('./dispatcher.js');
 
-var AppDispatcher = React.addons.update(Dispatcher.prototype, { $merge: {
+var Dispatcher = require('flux').Dispatcher;
+var assign = require('object-assign');
+
+var AppDispatcher = assign(new Dispatcher(), {
   handleViewAction: function(action){
     console.log("*****start handleViewAction******");
     console.log(action);
@@ -30,6 +31,6 @@ var AppDispatcher = React.addons.update(Dispatcher.prototype, { $merge: {
       action: action
     })
   },
-}});
+});
 
 module.exports = AppDispatcher;

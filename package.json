@@ -4,26 +4,30 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-  "react": "^0.13.3",
-  "react-router": "^0.13.3",
-  "reactify": "0.17.1",
-  "superagent": "0.21.0"
-
+    "flux": "^2.0.3",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "superagent": "0.21.0",
+    "object-assign": "2.0.0" 
   },
+
   "devDependencies": {
     "envify": "^1.2.1",
     "es6-promise": "^1.0.0",
     "gulp": "^3.8.0",
-    "gulp-browserify": "^0.5.0",
+    "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.2.0",
     "gulp-connect": "^2.2.0",
     "gulp-open": "~0.3.2",
     "gulp-livereload": "^3.8.0",
-    "gulp-plumber": "^1.0.0"
+    "gulp-plumber": "^1.0.0",
+    "reactify": "1.1.1"
   },
+  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch" : "gulp watch"
   },
+  
   "author": "",
   "license": "ISC"
 }

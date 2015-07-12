@@ -21,7 +21,7 @@ var Template =
                     {this.props.children}
                     <br/><br/>
                     { /* this button component uses view action dispatcher api  and it is using flux architecture */ }
-                    <button className="btn btn-default" onClick={this.handleClick}>Add Item (an example output in the console .. it is using Actions->Dispatcher->Store one directional flow) </button>
+                    <button className="btn btn-default" onClick={this.handleClick}>Add Item (an example output in the console .. it is using Actions-&lt;Dispatcher-&lt;Store one directional flow) </button>
                 </div>
             	)
         }
