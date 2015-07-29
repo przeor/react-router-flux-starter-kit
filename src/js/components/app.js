@@ -9,6 +9,8 @@ var APP = React.createClass({
     return (
       <Template>
         <RouteHandler/>
+     { /* this Entity component uses view request dispatcher for web api call and it is using flux architecture */ }
+        <Entity /> 
       </Template>
     );
   }
