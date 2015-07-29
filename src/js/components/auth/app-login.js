@@ -17,14 +17,17 @@ var Login = React.createClass({
 
   getInitialState: function () {
     return AuthStore.getState();
-
   },
   componentDidMount: function() {
       AuthStore.addChangeListener(this._onChange);
   },
   componentDidUpdate: function() {
     if(this.state.auth_token!==null) {
-      this.context.router.replaceWith('/dashboard');
+      if(Login.attemptedTransition) {
+        Login.attemptedTransition.retry();
+      } else {
+        this.context.router.replaceWith('/dashboard');
+      }
     }
   },
   componentWillUnmount: function() {
