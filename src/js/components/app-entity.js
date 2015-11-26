@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var EntityActions = require('../actions/app-entity');
 var EntityStore = require('../stores/app-entity');
@@ -21,11 +20,17 @@ var Entity = React.createClass({
     getEntityDataIfNeeded: function(props) {
         var entityList = EntityStore.getState();
         if(entityList.length===0) {
-            entity_id = "1" // this just example .. you can use this.props.entity_id
+            var entity_id = "1" // this just example .. you can use this.props.entity_id
             EntityActions.getEntityData(entity_id);
         }
     },
-    _onChange: function() {this.setState(EntityStore.getState());},
+    _onChange: function() {
+        var newState = EntityStore.getState();
+        console.log("newState below");
+        console.log(newState);
+        this.setState(newState);
+
+    },
     render: function() {
         console.log("got web api data while renedering");
         console.log(this.state); 

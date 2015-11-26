@@ -9,7 +9,7 @@ var AppDispatcher = require('../dispatchers/app-dispatcher');
 
 
 
-_fb_login_object = {
+var _fb_login_object = {
     success: function(user) {
         oauth_obj = {
             "parse_username": user._serverData.username,

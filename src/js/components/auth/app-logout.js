@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var AuthStore = require('../../stores/app-auth.js');
 

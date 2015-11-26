@@ -67,7 +67,7 @@ var Api = {
         var key = AppConstants.GET_ENTITY_DATA;
         var params = {entityId: entityId};
         abortPendingRequests(key);
-        dispatch(key, AppConstants.PENDING, params);
+        dispatch(AppConstants.PENDING, AppConstants.PENDING, params);
         _pendingRequests[key] = get(url).end(
             makeDigestFun(key, params)
         );

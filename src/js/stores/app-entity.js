@@ -12,8 +12,11 @@ var _entityList = [
 
 
 
-function _persistEntityData(response) {
+function _persistEntityData(actionDetails) {
+  console.log(actionDetails);
+  var response = actionDetails.response;
 	console.log("Entity gets async data from web api stores /app-entity.js");
+  console.log(response);
   _entityList = response;
     // do whatever you need to do with the response to store
     // the state
@@ -39,7 +42,7 @@ var EntityStore = React.addons.update(EventEmitter.prototype, {$merge: {
     var action = payload.action; // this is our action from handleViewAction or handleRequestAction
     switch(action.actionType) {
         case AppConstants.GET_ENTITY_DATA:
-            _persistEntityData(action.response);
+            _persistEntityData(action);
             break;
         default:
             return true;

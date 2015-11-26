@@ -5,13 +5,14 @@ var RouteHandler = Router.RouteHandler;
 var Link = Router.Link;
 
 
-APP = require('./components/app').APP;
+var APP = require('./components/app').APP;
 
 var Logout = require('./components/auth/app-logout');
 var Login = require('./components/auth/app-login');
 
 var About = require('./components/about/app-about');
 var Dashboard = require('./components/dashboard/app-dashboard');
+import ES6Test from './components/es6/es6-test';
 
 
 var routes = (
@@ -20,6 +21,7 @@ var routes = (
     <Route name="logout" handler={Logout}/>
     <Route name="about" handler={About}/>
     <Route name="dashboard" handler={Dashboard}/>
+    <Route name="es6-test" handler={ES6Test}/>
   </Route>
 );
 

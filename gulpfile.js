@@ -5,6 +5,10 @@ var browserify = require('gulp-browserify'),
     open = require('gulp-open'),
     plumber = require('gulp-plumber'),
     livereload = require('gulp-livereload');
+
+var babelify = require('babelify'),
+    source = require('vinyl-source-stream'),
+    browserify = require('browserify');
  
 gulp
   // performs magic
@@ -20,6 +24,15 @@ gulp
       .pipe(concat('main.js'))
       .pipe(plumber.stop())
       .pipe(gulp.dest('dist/js'))
+      .pipe(livereload());
+  })
+
+  .task('babelify', function() {
+    browserify({entries: './src/js/main.js', debug: true})
+      .transform('babelify', {presets: ['es2015', 'react']})
+      .bundle()
+      .pipe(source('main.js'))
+      .pipe(gulp.dest('./dist/js/'))
       .pipe(livereload());
   })
  
@@ -53,14 +66,14 @@ gulp
     gulp
       .src('dist/index.html')
       .pipe(
-        open('', {app: 'google chrome',url: 'http://localhost:8080/'})
+        open('', {app: 'chrome',url: 'http://localhost:8080/'})
       );
   })
  
  
   // build the application
-  .task('default', ['browserify', 'copy', 'connect', 'open'])
-  .task('default2', ['browserify', 'copy'])
+  .task('default', ['babelify', 'copy', 'connect', 'open'])
+  .task('default2', ['babelify', 'copy'])
   
   // watch for source changes
   .task('watch', ['default'], function(){

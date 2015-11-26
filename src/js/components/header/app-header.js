@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -31,6 +30,7 @@ var Header = React.createClass({
           <li>{loginOrOut}</li>
           <li><Link to="about">About</Link></li>
           <li><Link to="dashboard">Schedule Dashboard</Link></li>
+          <li><Link to="es6-test">ES6 Test</Link></li>
         </ul>
         <br/>
       </div>

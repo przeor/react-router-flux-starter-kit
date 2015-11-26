@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var AppStore = require('../stores/app-store.js');
 var AppActions = require('../actions/app-actions.js');
