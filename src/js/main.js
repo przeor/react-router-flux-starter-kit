@@ -11,7 +11,7 @@ var Logout = require('./components/auth/app-logout');
 var Login = require('./components/auth/app-login');
 
 var About = require('./components/about/app-about');
-var Dashboard = require('./components/dashboard/app-dashboard');
+import Dashboard from './components/dashboard/app-dashboard';
 import ES6Test from './components/es6/es6-test';
 
 

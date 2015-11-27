@@ -1,13 +1,13 @@
-var React = require('react');
-var Login = require('../auth/app-login');
-var AuthStore = require('../../stores/app-auth.js');
-var ScheduleList = require('./app-schedulelist');
-var AuthenticationMixin = require('../../mixins/AuthenticationMixin.js');
+import React from 'react';
+import Login from '../auth/app-login';
+import AuthStore from '../../stores/app-auth.js';
+import ScheduleList from './app-schedulelist';
+import AuthenticationMixin from '../../mixins/AuthenticationMixin.js';
 
 
-var Dashboard = React.createClass({
-  mixins: [ AuthenticationMixin ],
-  render: function () {
+class Dashboard extends React.Component {
+  //mixins: [ AuthenticationMixin ]
+  render() {
     var token = AuthStore.authGetToken();
     return (
       <div>
@@ -16,6 +16,6 @@ var Dashboard = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = Dashboard;
+export default Dashboard;

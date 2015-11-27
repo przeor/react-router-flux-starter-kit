@@ -1,35 +1,33 @@
-var React = require('react');
-var Login = require('../auth/app-login');
-var AuthStore = require('../../stores/app-auth.js');
-var DashboardStore = require('../../stores/app-dashboard.js');
+import React from 'react';
+import Login from '../auth/app-login';
+import AuthStore from '../../stores/app-auth.js';
+import DashboardStore from '../../stores/app-dashboard.js';
 
 
-function getScheduleList() {
-  return {scheduleList: DashboardStore.getScheduleList()}
-}
+const getScheduleList = () => {
+  return { scheduleList: DashboardStore.getScheduleList() };
+};
 
-var ScheduleList = React.createClass({
-  getInitialState: function() {
-    return getScheduleList();
-  },
-  render: function () {
-    var scheduleListItems = this.state.scheduleList.map(function(item,i){
+class ScheduleList extends React.Component {
+  constructor() {
+    super();
+    this.state = getScheduleList();
+  }
+  render() {
+    let scheduleListItems = this.state.scheduleList.map((item, i) => {
       return <tr key={i}><td>{item.status}</td><td>{item.fullname}</td><td>{item.email}</td></tr>
     });
     return (
-      <div>
-      
-        <table className="table table-striped table-hover">
+      <table className="table table-striped table-hover">
         <thead>
           <tr><th>Status</th><th>Fullname</th><th>Email</th></tr>
         </thead>
         <tbody>
-        {scheduleListItems}
+          {scheduleListItems}
         </tbody>
-        </table>
-      </div>
+      </table>
     );
   }
-});
+}
 
-module.exports = ScheduleList;
+export default ScheduleList;
