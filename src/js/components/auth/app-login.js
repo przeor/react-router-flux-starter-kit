@@ -1,45 +1,41 @@
-var React = require('react');
-var Router = require('react-router');
-var AuthStore = require('../../stores/app-auth.js');
-var AuthAction = require('../../actions/app-auth.js');
-var FbLoginButton = require('./app-fbloginbutton.js');
+import React from 'react';
+import Router from 'react-router';
+import AuthStore from '../../stores/app-auth.js';
+import AuthAction from '../../actions/app-auth.js';
+import FbLoginButton from './app-fbloginbutton.js';
 
-
-var Login = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func.isRequired
-  },
-
-  statics: {
-    attemptedTransition: null
-  },
-
-  getInitialState: function () {
-    return AuthStore.getState();
-  },
-  componentDidMount: function() {
+class Login extends React.Component {
+  constructor() {
+    super();
+    this.state = AuthStore.getState();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this._onChange = this._onChange.bind(this);
+  }
+  componentDidMount() {
       AuthStore.addChangeListener(this._onChange);
-  },
-  componentDidUpdate: function() {
-    if(this.state.auth_token!==null) {
+  }
+  componentDidUpdate() {
+    if(this.state.auth_token !== null) {
       if(Login.attemptedTransition) {
         Login.attemptedTransition.retry();
       } else {
         this.context.router.replaceWith('/dashboard');
       }
     }
-  },
-  componentWillUnmount: function() {
+  }
+  componentWillUnmount() {
       AuthStore.removeChangeListener(this._onChange);
-  },
-  handleSubmit: function (event) {
+  }
+  handleSubmit (event) {
     event.preventDefault();
-    var email = this.refs.email.getDOMNode().value;
-    var pass = this.refs.pass.getDOMNode().value;
+    var email = this.refs.email.value,
+        pass = this.refs.pass.value;
     AuthAction.startAuth(email, pass);
-  },
-  _onChange: function() {this.setState(AuthStore.getState());},
-  render: function () {
+  }
+  _onChange() {
+    this.setState(AuthStore.getState());
+  }
+  render() {
     var errors = this.state.login_error === true ? <p>Bad login information</p> : '';
     return (
       <div>
@@ -53,6 +49,14 @@ var Login = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = Login;
+Login.contextTypes = {
+  router: React.PropTypes.func.isRequired
+}
+
+Login.statics = {
+  attemptedTransition: null
+}
+
+export default Login;

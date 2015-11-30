@@ -1,19 +1,18 @@
-var React = require('react');
+import React from 'react';
+import {render} from 'react-dom';
 var Router = require('react-router');
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 var Link = Router.Link;
 
+import APP from './components/app';
 
-var APP = require('./components/app').APP;
+import Logout from './components/auth/app-logout';
+import Login from './components/auth/app-login';
 
-var Logout = require('./components/auth/app-logout');
-var Login = require('./components/auth/app-login');
-
-var About = require('./components/about/app-about');
+import About from './components/about/app-about';
 import Dashboard from './components/dashboard/app-dashboard';
 import ES6Test from './components/es6/es6-test';
-
 
 var routes = (
   <Route handler={APP}>
@@ -26,5 +25,5 @@ var routes = (
 );
 
 Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.getElementById('example'));
+  render(<Handler/>, document.getElementById('example'));
 });

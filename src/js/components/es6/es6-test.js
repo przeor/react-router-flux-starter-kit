@@ -5,9 +5,6 @@ class ES6test extends React.Component {
   constructor() {
     super();
   }
-  static getStores() {
-    return [leftNavStore];
-  }
   render() {
     return (
       <div>
@@ -17,5 +14,13 @@ class ES6test extends React.Component {
     );
   }
 }
+
+ES6test.willTransitionTo = (transition) => {
+    if (!AuthStore.getState().loggedIn) {
+      Login.attemptedTransition = transition;
+      transition.redirect('/login');
+      alert('Please login first.');
+    }
+};
 
 export default ES6test;

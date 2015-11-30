@@ -1,12 +1,12 @@
-var AppConstants = require('../constants/app-constants.js');
-var AppDispatcher = require('../dispatchers/app-dispatcher.js');
+import AppConstants from '../constants/app-constants.js';
+import AppDispatcher from '../dispatchers/app-dispatcher.js';
 
 var AppActions = {
-  addItem:function(){
+  addItem() {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.ADD_ITEM
     })
   }
 }
 
-module.exports = AppActions;
+export default AppActions;

@@ -1,15 +1,15 @@
-var AppConstants = require('../constants/app-constants');
-var AppDispatcher = require('../dispatchers/app-dispatcher');
+import AppConstants from '../constants/app-constants.js';
+import AppDispatcher from '../dispatchers/app-dispatcher.js';
 
 var AuthActions = {
-    startAuth: function(email, pass) {
-    var payload = {
-    	'actionType': AppConstants.AUTH_LOG_IN, 
-    	'email': email, 
-    	'pass': pass
-    };
-    AppDispatcher.handleViewAction(payload)
-    },
-}
+    startAuth(email, pass) {
+        var payload = {
+            'actionType': AppConstants.AUTH_LOG_IN, 
+            'email': email, 
+            'pass': pass
+        };
+        AppDispatcher.handleViewAction(payload)
+    }
+};
 
-module.exports = AuthActions;
+export default AuthActions;

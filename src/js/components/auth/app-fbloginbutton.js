@@ -43,4 +43,3 @@ var FbLoginButton = React.createClass({
 });
 
 module.exports = FbLoginButton;
-

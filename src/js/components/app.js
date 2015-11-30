@@ -1,24 +1,18 @@
-var React = require('react');
+import React from 'react';
 var RouteHandler = require('react-router').RouteHandler;
-var Entity = require('./app-entity');
-var Template = require('./app-template');
+import Entity from './app-entity';
+import Template from './app-template';
 
-var APP = React.createClass({
-  render: function () {
+class APP extends React.Component {
+  render() {
     return (
       <Template>
-        <RouteHandler/>
-     { /* this Entity component uses view request dispatcher for web api call and it is using flux architecture */ }
-        <Entity /> 
+        <RouteHandler />
+        { /* this Entity component uses view request dispatcher for web api call and it is using flux architecture */ }
+        <Entity />
       </Template>
     );
   }
-});
+}
 
-
-
-
-exports.APP = APP;
-
-
-
+export default APP;

@@ -1,16 +1,15 @@
-var React = require('react');
-var AuthStore = require('../../stores/app-auth.js');
+import React from 'react';
+import AuthStore from '../../stores/app-auth.js';
 
 
-var Logout = React.createClass({
-  componentDidMount: function () {
+class Logout extends React.Component {
+  componentDidMount() {
     AuthStore.authLogout();
-  },
-
-  render: function () {
+  }
+  render() {
     return <p>You are now logged out.</p>;
   }
-});
+}
 
 
-module.exports = Logout;
+export default Logout;

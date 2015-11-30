@@ -1,11 +1,10 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import Router from 'react-router';
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
-var auth = require('../../stores/app-auth'); // TODO / USE DISPATCHER & ACTIONS
-var Login = require('../auth/app-login');
-var AppActions = require('../../actions/app-actions.js');
-var AuthStore = require('../../stores/app-auth.js');
+import auth from '../../stores/app-auth'; // TODO / USE DISPATCHER & ACTIONS
+import Login from '../auth/app-login';
+import AuthStore from '../../stores/app-auth.js';
 var Link = Router.Link;
 
 
@@ -38,10 +37,4 @@ var Header = React.createClass({
   }
 });
 
-
-
-
 module.exports = Header;
-
-
-
