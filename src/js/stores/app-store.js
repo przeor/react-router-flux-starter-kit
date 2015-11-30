@@ -1,10 +1,8 @@
-var AppDispatcher = require('../dispatchers/app-dispatcher');
-var AppConstants = require('../constants/app-constants');
-var EventEmitter = require('events').EventEmitter;
-var React = require('react/addons');
+import AppConstants from '../constants/app-constants';
+import AppDispatcher from '../dispatchers/app-dispatcher';
+import { EventEmitter } from 'events';
 
 var CHANGE_EVENT = "change";
-
 
 var _cartItems = [];
 
@@ -14,26 +12,20 @@ function _addItem(item){
   _cartItems.push(Math.random());
 }
 
-
-
-
-var AppStore = React.addons.update(EventEmitter.prototype, { $merge: {
-  emitChange:function(){
+const AppStore = Object.assign(EventEmitter.prototype, {
+  emitChange() {
     this.emit(CHANGE_EVENT);
   },
-
-  addChangeListener:function(callback){
+  addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback)
   },
-
-  removeChangeListener:function(callback){
+  removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback)
   },
-  getCart:function(){
+  getCart() {
     return _cartItems
   },
-
-  dispatcherIndex:AppDispatcher.register(function(payload){
+  dispatcherIndex: AppDispatcher.register((payload) => {
     var action = payload.action; // this is our action from handleViewAction
     switch(action.actionType){
       case AppConstants.ADD_ITEM:
@@ -44,6 +36,6 @@ var AppStore = React.addons.update(EventEmitter.prototype, { $merge: {
 
     return true;
   })
-}});
+});
 
-module.exports = AppStore;
+export default AppStore;

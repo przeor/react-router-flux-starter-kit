@@ -1,8 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
-var AuthStore = require('../../stores/app-auth.js');
+import AuthStore from '../../stores/app-auth.js';
 import FbOauthActions from '../../actions/app-fboauth';
-var AuthStore = require('../../stores/app-auth.js');
 
 
 var FbLoginButton = React.createClass({

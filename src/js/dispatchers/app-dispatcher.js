@@ -1,8 +1,9 @@
-var Dispatcher = require('flux').Dispatcher;
-var assign = require('object-assign');
+import { Dispatcher } from 'flux';
 
-var AppDispatcher = assign(new Dispatcher(), {
-  handleViewAction: function(action){
+const flux = new Dispatcher();
+
+class DispatcherClass extends Dispatcher {
+  handleViewAction(action) {
     console.log("*****start handleViewAction******");
     console.log(action);
     console.log("*****end handleViewAction******");
@@ -10,8 +11,8 @@ var AppDispatcher = assign(new Dispatcher(), {
       source: 'VIEW_ACTION',
       action: action
     })
-  },
-  handleRequestAction: function(action){
+  }
+  handleRequestAction(action) {
     console.log("*****start handleRequestAction******");
     console.log(action);
     console.log("*****end handleRequestAction******");
@@ -19,8 +20,8 @@ var AppDispatcher = assign(new Dispatcher(), {
       source: 'WEB_API_ACTION',
       action: action
     })
-  },
-  handleRequestFbOauth: function(action){
+  }
+  handleRequestFbOauth(action) {
     console.log("FACEBOOK handleRequestFbOauth");
     console.log(action);
     console.log("FACEBOOK handleRequestFbOauth");
@@ -28,7 +29,17 @@ var AppDispatcher = assign(new Dispatcher(), {
       source: 'FB_OAUTH_ACTION',
       action: action
     })
-  },
-});
+  }
+  register(callback) {
+      console.log(['AppDispatcher -> register(callback)', callback]);
+    return flux.register(callback);
+  }
+  dispatch(actionType, action) {
+      console.log(['AppDispatcher -> dispatch(actionType, action)', actionType, action]);
+    flux.dispatch(actionType, action);
+  }
+}
 
-module.exports = AppDispatcher;
+const AppDispatcher = new DispatcherClass();
+
+export default AppDispatcher;

@@ -1,21 +1,15 @@
-var AppDispatcher = require('../dispatchers/app-dispatcher');
-var AppConstants = require('../constants/app-constants');
-var EventEmitter = require('events').EventEmitter;
-var React = require('react/addons');
-
+import AppConstants from '../constants/app-constants';
+import AppDispatcher from '../dispatchers/app-dispatcher';
+import { EventEmitter } from 'events';
 
 var CHANGE_EVENT = "change";
 
-
 var _authData = {
-      login_error: false,
-      auth_token: null,
-      loggedIn: !!localStorage.token
-    };
-    // your state container where
-
-
-
+  login_error: false,
+  auth_token: null,
+  loggedIn: !!localStorage.token
+};
+// your state container where
 
 var _auth = {
   login: function (email, pass, cb) {
@@ -83,8 +77,6 @@ var _auth = {
   onChangeHeader: function() {}
 };
 
-
-
 function _pretendRequest(email, pass, cb) {
   setTimeout(function () {
     if (email === 'joe@example.com' && pass === 'password1') {
@@ -104,40 +96,35 @@ function _pretendRequest(email, pass, cb) {
   }, 0);
 }
 
-
-
-var AuthStore = React.addons.update(EventEmitter.prototype, {$merge: {
-  emitChange:function(){
+const AuthStore = Object.assign(EventEmitter.prototype, {
+  emitChange() {
     this.emit(CHANGE_EVENT);
   },
-
-  addChangeListener:function(callback){
+  addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback)
   },
-
-  removeChangeListener:function(callback){
+  removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback)
   },
-  authGetToken:function(){
+  authGetToken() {
     return _auth.getToken();
   },
-  authLoggedIn:function(){
+  authLoggedIn() {
     return _authData.loggedIn;
   },
-  authOnChange:function(cb){
+  authOnChange(cb) {
     _auth.onChangeRedirect = cb;
   },
-  authOnChangeHeader:function(cb){
+  authOnChangeHeader(cb) {
     _auth.onChangeHeader = cb;
   },
-  authLogout:function(){
+  authLogout() {
     return _auth.logout();
   },
-  getState: function() {
+  getState() {
     return _authData;
   },
-
-  dispatcherIndex:AppDispatcher.register(function(payload){
+  dispatcherIndex: AppDispatcher.register((payload) => {
     var action = payload.action;
     console.log(action);
     switch(action.actionType){
@@ -153,10 +140,8 @@ var AuthStore = React.addons.update(EventEmitter.prototype, {$merge: {
       //   break;
     }
     AuthStore.emitChange();
-
     return true;
   })
-}});
+});
 
-module.exports = AuthStore;
-
+export default AuthStore;

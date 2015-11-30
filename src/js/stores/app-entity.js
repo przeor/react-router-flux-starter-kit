@@ -1,16 +1,12 @@
-var AppDispatcher = require('../dispatchers/app-dispatcher');
-var AppConstants = require('../constants/app-constants');
-var EventEmitter = require('events').EventEmitter;
-var React = require('react/addons');
+import AppConstants from '../constants/app-constants';
+import AppDispatcher from '../dispatchers/app-dispatcher';
+import { EventEmitter } from 'events';
 
 var CHANGE_EVENT = "change";
-
 
 var _entityList = [
     // your state container where
 ];
-
-
 
 function _persistEntityData(actionDetails) {
   console.log(actionDetails);
@@ -22,23 +18,20 @@ function _persistEntityData(actionDetails) {
     // the state
 }
 
-
-var EntityStore = React.addons.update(EventEmitter.prototype, {$merge: {
-  emitChange:function(){
+const EntityStore = Object.assign(EventEmitter.prototype, {
+  emitChange() {
     this.emit(CHANGE_EVENT);
   },
-
-  addChangeListener:function(callback){
-    this.on(CHANGE_EVENT, callback)
+  addChangeListener(callback) {
+    this.on(CHANGE_EVENT, callback);
   },
-
-  removeChangeListener:function(callback){
-    this.removeListener(CHANGE_EVENT, callback)
+  removeChangeListener(callback){
+    this.removeListener(CHANGE_EVENT, callback);
   },
-  getState: function() {
+  getState() {
     return _entityList;
   },
-  dispatcherIndex:AppDispatcher.register(function(payload){
+  dispatcherIndex: AppDispatcher.register((payload) => {
     var action = payload.action; // this is our action from handleViewAction or handleRequestAction
     switch(action.actionType) {
         case AppConstants.GET_ENTITY_DATA:
@@ -48,16 +41,8 @@ var EntityStore = React.addons.update(EventEmitter.prototype, {$merge: {
             return true;
     }
     EntityStore.emitChange();
-
     return true;
   })
-}});
+});
 
-
-
-
-
-
-
-
-module.exports = EntityStore;
+export default EntityStore;
