@@ -1,14 +1,14 @@
-var AppConstants = require('../constants/app-constants.js');
-var AppDispatcher = require('../dispatchers/app-dispatcher.js');
-var FbOauth = require('../utils/fboauth');
+import AppConstants from '../constants/app-constants.js';
+import AppDispatcher from '../dispatchers/app-dispatcher.js';
+import FbOauth from '../utils/fboauth';
 
 var FbOauthActions = {
-  startOauth: function() {
+  startOauth() {
     FbOauth.startOauth();
   },
-  fbLoginPageLoaded: function() {
+  fbLoginPageLoaded() {
     FbOauth.fbLoginPageLoaded();
   }
 }
 
-module.exports = FbOauthActions;
+export default FbOauthActions;

@@ -1,9 +1,9 @@
-var Api = require('../utils/api');
+import Api from '../utils/api';
 
 var EntityActions = {
-    getEntityData: function(entityId) {
-        Api.getEntityData(entityId);
-    },
+  getEntityData(entityId) {
+    Api.getEntityData(entityId);
+  },
 }
 
-module.exports = EntityActions;
+export default EntityActions;

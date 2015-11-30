@@ -1,13 +1,9 @@
-var AppConstants = require('../constants/app-constants');
-var AppDispatcher = require('../dispatchers/app-dispatcher');
-
-
+import AppConstants from '../constants/app-constants';
+import AppDispatcher from '../dispatchers/app-dispatcher';
 
 //
 // TODO - when user clicks log-out, it needs a call to backend (nice to have)
 // 
-
-
 
 var _fb_login_object = {
     success: function(user) {
@@ -53,8 +49,6 @@ var _fb_login_object = {
     }
 }
 
-
-
 function _dispatch(key, response, params) {
     var payload = {actionType: key, response: response};
     if (params) {
@@ -62,8 +56,6 @@ function _dispatch(key, response, params) {
     }
     AppDispatcher.handleRequestFbOauth(payload);
 }
-
-
 
 // 
 // Below hacking not blocking fb's popups
@@ -91,10 +83,6 @@ function _fbLoginPageLoaded() {
     }(document)); 
 }
 
-
-
-
-
 function _startFbOauth() { 
     // !IMPORTANT This Parse FB login fires up when the button is
     // clicked for second and later times .. probably later on
@@ -102,15 +90,13 @@ function _startFbOauth() {
     Parse.FacebookUtils.logIn("user_likes,email", _fb_login_object);
 }
 
-
-
 var FbOauth = {
-    startOauth: function() {
+    startOauth() {
         _startFbOauth();
     },
-    fbLoginPageLoaded: function() {
+    fbLoginPageLoaded() {
         _fbLoginPageLoaded();
     }
 };
 
-module.exports = FbOauth;
+export default FbOauth;

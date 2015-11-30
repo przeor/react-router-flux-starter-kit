@@ -1,4 +1,6 @@
 import React from "react";
+import Login from '../auth/app-login';
+import AuthStore from '../../stores/app-auth.js';
 
 
 class ES6test extends React.Component {

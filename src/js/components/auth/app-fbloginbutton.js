@@ -1,7 +1,7 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import Router from 'react-router';
 var AuthStore = require('../../stores/app-auth.js');
-var FbOauthActions = require('../../actions/app-fboauth');
+import FbOauthActions from '../../actions/app-fboauth';
 var AuthStore = require('../../stores/app-auth.js');
 
 
