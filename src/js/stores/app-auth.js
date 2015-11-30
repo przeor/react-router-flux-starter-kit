@@ -2,16 +2,16 @@ import AppConstants from '../constants/app-constants';
 import AppDispatcher from '../dispatchers/app-dispatcher';
 import { EventEmitter } from 'events';
 
-var CHANGE_EVENT = "change";
+const CHANGE_EVENT = "change";
 
-var _authData = {
+let _authData = {
   login_error: false,
   auth_token: null,
   loggedIn: !!localStorage.token
 };
 // your state container where
 
-var _auth = {
+let _auth = {
   login: function (email, pass, cb) {
     console.log('loggin',email, pass);
     cb = cb || function(backdata){};
@@ -46,14 +46,12 @@ var _auth = {
   getToken: function () {
     return localStorage.token;
   },
-
   logout: function (cb) {
     _authData.auth_token=null;
     _authData.loggedIn = false;
     localStorage.removeItem('token');
     this.onChange(false);
   },
-
   loggedIn: function () {
     return !!localStorage.token;
   },
@@ -77,7 +75,7 @@ var _auth = {
   onChangeHeader: function() {}
 };
 
-function _pretendRequest(email, pass, cb) {
+const _pretendRequest = (email, pass, cb) => {
   setTimeout(function () {
     if (email === 'joe@example.com' && pass === 'password1') {
       cb({
@@ -94,7 +92,7 @@ function _pretendRequest(email, pass, cb) {
     }
     AuthStore.emitChange();
   }, 0);
-}
+};
 
 const AuthStore = Object.assign(EventEmitter.prototype, {
   emitChange() {
@@ -125,19 +123,14 @@ const AuthStore = Object.assign(EventEmitter.prototype, {
     return _authData;
   },
   dispatcherIndex: AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
     console.log(action);
     switch(action.actionType){
       case AppConstants.AUTH_LOG_IN:
-      _auth.login(action.email, action.pass);
-      break;
+        _auth.login(action.email, action.pass);
+        break;
       case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
         _auth.FbOauthRequest(action.response);
-        break;
-      // below is just a boiler plate (uncomment if required)
-      // case AppConstants.FB_OAUTH_TOKEN_SUCCESS:
-      //   _FbOauthRequest(action.response);
-      //   break;
     }
     AuthStore.emitChange();
     return true;

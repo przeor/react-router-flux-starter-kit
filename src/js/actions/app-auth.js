@@ -1,15 +1,13 @@
-import AppConstants from '../constants/app-constants.js';
-import AppDispatcher from '../dispatchers/app-dispatcher.js';
+import AppConstants from '../constants/app-constants';
+import AppDispatcher from '../dispatchers/app-dispatcher';
 
-var AuthActions = {
+export default {
   startAuth(email, pass) {
-    var payload = {
+    let payload = {
       'actionType': AppConstants.AUTH_LOG_IN, 
       'email': email, 
       'pass': pass
     };
-    AppDispatcher.handleViewAction(payload)
+    AppDispatcher.handleViewAction(payload);
   }
-};
-
-export default AuthActions;
+}

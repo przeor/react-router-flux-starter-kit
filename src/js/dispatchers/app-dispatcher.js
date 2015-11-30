@@ -1,7 +1,5 @@
 import { Dispatcher } from 'flux';
 
-const flux = new Dispatcher();
-
 class DispatcherClass extends Dispatcher {
   handleViewAction(action) {
     console.log("*****start handleViewAction******");
@@ -29,14 +27,6 @@ class DispatcherClass extends Dispatcher {
       source: 'FB_OAUTH_ACTION',
       action: action
     })
-  }
-  register(callback) {
-      console.log(['AppDispatcher -> register(callback)', callback]);
-    return flux.register(callback);
-  }
-  dispatch(actionType, action) {
-      console.log(['AppDispatcher -> dispatch(actionType, action)', actionType, action]);
-    flux.dispatch(actionType, action);
   }
 }
 

@@ -1,4 +1,4 @@
-var AppConstants = require('../constants/app-constants');
+import AppConstants from '../constants/app-constants';
 var AppDispatcher = require('../dispatchers/app-dispatcher');
 var request = require('superagent');
 

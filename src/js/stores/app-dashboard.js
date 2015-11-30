@@ -2,17 +2,17 @@ import AppConstants from '../constants/app-constants';
 import AppDispatcher from '../dispatchers/app-dispatcher';
 import { EventEmitter } from 'events';
 
-var CHANGE_EVENT = "change";
+const CHANGE_EVENT = "change";
 
-var _scheduleList = [
-    {id:1, status: 'ok', fullname: 'FullName #1', email: "1@aaa.com"},
-    {id:2, status: 'ok', fullname: 'FullName #2', email: "2@aaa.com"},
-    {id:3, status: 'ok', fullname: 'FullName #3', email: "3@aaa.com"}
-  ];
+let _scheduleList = [
+  { id: 1, status: 'ok', fullname: 'FullName #1', email: "1@aaa.com" },
+  { id: 2, status: 'ok', fullname: 'FullName #2', email: "2@aaa.com" },
+  { id: 3, status: 'ok', fullname: 'FullName #3', email: "3@aaa.com" }
+];
 
-function _addItem(item){
+const _addItem = (item) => {
   console.log("Dashboard");
-}
+};
 
 const AppStore = Object.assign(EventEmitter.prototype, {
   emitChange() {

@@ -1,9 +1,7 @@
 import Api from '../utils/api';
 
-var EntityActions = {
+export default {
   getEntityData(entityId) {
     Api.getEntityData(entityId);
-  },
-}
-
-export default EntityActions;
+  }
+};

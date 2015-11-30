@@ -2,20 +2,20 @@ import AppConstants from '../constants/app-constants';
 import AppDispatcher from '../dispatchers/app-dispatcher';
 import { EventEmitter } from 'events';
 
-var CHANGE_EVENT = "change";
+const CHANGE_EVENT = "change";
 
-var _entityList = [
-    // your state container where
+let _entityList = [
+  // your state container where
 ];
 
-function _persistEntityData(actionDetails) {
+const _persistEntityData = (actionDetails) => {
   console.log(actionDetails);
   var response = actionDetails.response;
 	console.log("Entity gets async data from web api stores /app-entity.js");
   console.log(response);
   _entityList = response;
-    // do whatever you need to do with the response to store
-    // the state
+  // do whatever you need to do with the response to store
+  // the state
 }
 
 const EntityStore = Object.assign(EventEmitter.prototype, {
@@ -34,11 +34,11 @@ const EntityStore = Object.assign(EventEmitter.prototype, {
   dispatcherIndex: AppDispatcher.register((payload) => {
     var action = payload.action; // this is our action from handleViewAction or handleRequestAction
     switch(action.actionType) {
-        case AppConstants.GET_ENTITY_DATA:
-            _persistEntityData(action);
-            break;
-        default:
-            return true;
+      case AppConstants.GET_ENTITY_DATA:
+        _persistEntityData(action);
+        break;
+      default:
+        return true;
     }
     EntityStore.emitChange();
     return true;

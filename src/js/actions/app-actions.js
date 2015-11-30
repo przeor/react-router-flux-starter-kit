@@ -1,12 +1,10 @@
-import AppConstants from '../constants/app-constants.js';
-import AppDispatcher from '../dispatchers/app-dispatcher.js';
+import AppConstants from '../constants/app-constants';
+import AppDispatcher from '../dispatchers/app-dispatcher';
 
-var AppActions = {
+export default {
   addItem() {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.ADD_ITEM
     })
   }
-}
-
-export default AppActions;
+};

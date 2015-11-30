@@ -1,8 +1,8 @@
-import AppConstants from '../constants/app-constants.js';
-import AppDispatcher from '../dispatchers/app-dispatcher.js';
+import AppConstants from '../constants/app-constants';
+import AppDispatcher from '../dispatchers/app-dispatcher';
 import FbOauth from '../utils/fboauth';
 
-var FbOauthActions = {
+export default {
   startOauth() {
     FbOauth.startOauth();
   },
@@ -10,5 +10,3 @@ var FbOauthActions = {
     FbOauth.fbLoginPageLoaded();
   }
 }
-
-export default FbOauthActions;
