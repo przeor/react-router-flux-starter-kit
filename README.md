@@ -1,6 +1,10 @@
-# MOST UP-TO-DATE FREE [REACTJS](https://reactjs.co) BOOK
+# Free [Reactjs](https://reactjs.co) Convention Book
 
+Best available [reactjs](https://reactjs.co) starter kit with a free book (step-by-step) is available at [https://reactjs.co](https://reactjs.co)
+
+# Outdated
 This react flux starter master branch is outdated, please use the free [reactjs](https://reactjs.co) convention book in order to learn React Redux, the right way.
+
 
 
 #Reviews
